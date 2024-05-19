@@ -1,0 +1,450 @@
+{
+  "uuid": "aae05d80-cfa9-493d-9282-c6529ab01b18",
+  "lastMigration": 32,
+  "name": "AssignmentBookStoreAPI",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "3cb8ef3c-ebd2-48db-95f5-20bce06f3fd6",
+      "type": "http",
+      "documentation": "User Registration",
+      "method": "post",
+      "endpoint": "users/register",
+      "responses": [
+        {
+          "uuid": "5aff85b9-2e8b-4156-9ac8-1392b4ce4b1b",
+          "body": "{\n  \"id\": \"{{faker 'string.uuid'}}\",\n  \"username\": \"{{body 'username'}}\",\n  \"email\": \"{{body 'email'}}\",\n  \"createdAt\": \"{{now}}\",\n  \"message\": \"User registered successfully.\"\n}\n",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "Use registration success",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "86942c3b-022a-4251-af7a-ba5ed77d042f",
+          "body": "{\n  \"error\": \"Missing required fields: firstname, lastname, username, password, email.\"\n}\n",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Missing mandatory field",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "firstname",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "lastname",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "442d394f-b937-4780-9fdd-ce8b0ec5087a",
+          "body": "{\n  \"error\": \"Invalid email format.\"\n}\n",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid email format",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+              "invert": true,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f521b85d-1d15-4b46-9cdb-fc268f68559e",
+          "body": "{\n  \"error\": \"Username already exists.\"\n}\n",
+          "latency": 0,
+          "statusCode": 409,
+          "label": "User details already exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "raja_babu_exist",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "braja555_exist",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "4512c766-53f4-4aab-ab5b-23d01ed94ece",
+          "body": "{\n  \"error\": \"Email already registered.\"\n}\n",
+          "latency": 0,
+          "statusCode": 409,
+          "label": "Email id already exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "raja_babu_exist@api.com",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "raja_babu_exist@api.ae",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "02095785-adda-4564-9480-106b2542e30f",
+          "body": "{\n  \"error\": \"Password is week.\"\n}\n",
+          "latency": 0,
+          "statusCode": 422,
+          "label": "Password complexity requirments not met",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$",
+              "invert": true,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "d6247c49-7877-429a-9893-60908aa4a83c",
+      "type": "http",
+      "documentation": "Authenticate to Bookstore API",
+      "method": "post",
+      "endpoint": "users/login",
+      "responses": [
+        {
+          "uuid": "281a220b-8b02-47cb-b9a5-5bf9f57aa374",
+          "body": "{\n  \"token\": \"{{faker 'datatype.uuid'}}\",\n  \"message\": \"Login successful.\"\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "User login success",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "2a71e332-0e8b-470a-89e3-3184c8db87bd",
+          "body": "{\n  \"error\": \"Missing username or password.\"\n}\n",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Missing username or password",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "^$",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "^$",
+              "invert": false,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "beb74274-604a-412e-9dff-556e4773b115",
+          "body": "{\n  \"error\": \"Permission not granted for the entered user.\"\n}\n",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Permission not granted",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "BlockedUser",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "712be71f-0bed-41c2-8f7a-616dbf129337",
+          "body": "{\n  \"error\": \"Invalid credentials.\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "Invalid credential",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "raja_babu",
+              "invert": true,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "Password123%",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "13e049b9-26bc-4b07-a93d-9a7ea7167000",
+          "body": "{\n  \"error\": \"An unexpected error occurred. Please try again later.\"\n}\n",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Internal Server Error",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "20f22e54-e8c6-4b68-8f59-3cf84b201873",
+          "body": "{\n  \"error\": \"Bad Gateway\",\n  \"message\": \"The server was acting as a gateway or proxy and received an invalid response from the upstream server.\"\n}\n",
+          "latency": 0,
+          "statusCode": 502,
+          "label": "Upstream server issue",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "users/login/update",
+              "value": "",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "46ed184c-a917-4e04-9a47-3ee429daecc3",
+          "body": "{\n  \"error\": \"The authentication service is currently unavailable. Please try again later.\"\n}\n",
+          "latency": 0,
+          "statusCode": 503,
+          "label": "Authentication service unavailable",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "3cb8ef3c-ebd2-48db-95f5-20bce06f3fd6"
+    },
+    {
+      "type": "route",
+      "uuid": "d6247c49-7877-429a-9893-60908aa4a83c"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
