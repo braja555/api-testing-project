@@ -1,0 +1,42 @@
+[
+   {
+      "bookId": "1-e51969c6-df00-4829-afa9-1104749015b",
+      "title": "Luxurious Plastic Chips",
+      "author": "Arthur Emmerich",
+      "price": 691,
+      "quantity": 10,
+      "availability": true
+   },
+   {
+      "bookId": "2-e7022c47-0d09-443e-ad65-00281bb7408a",
+      "title": "1984",
+      "author": "Hilda Rippin",
+      "price": 524,
+      "quantity": 0,
+      "availability": false
+   },
+   {
+      "bookId": "3-511deaed-59fb-4fca-ae0b-856bdef7cae4",
+      "title": "Oriental Bronze Chair",
+      "author": "Darrel O'Kon",
+      "price": 586,
+      "quantity": 5,
+      "availability": true
+   },
+   {
+      "bookId": "4-85315750-7bf8-43d3-9370-9054ee25ebe4",
+      "title": "Sleek Rubber Chicken",
+      "author": "Rebecca Willms",
+      "price": 274,
+      "quantity": 0,
+      "availability": false
+   },
+   {
+      "bookId": "5-99339a7c-5dcc-48ce-be1c-aa919fefe51f",
+      "title": "Gorgeous Concrete Pizza",
+      "author": "Deborah Terry",
+      "price": 916,
+      "quantity": 100,
+      "availability": false
+   }
+]
