@@ -10,64 +10,72 @@ This project involves designing and implementing mock APIs for a hypothetical on
 - [Automated Testing](#automated-testing)
 - [Postman Collection](#postman-collection)
 - [Setup and Running](#setup-and-running)
-- [Documentation](#documentation)
-
-## Project Structure
 
 ## Project Structure
 ```
 api-testing-project/
   ├── mock-apis/
   │   ├── source/
-  │   └── config/
+  │   
   ├── tests/
   │   └── integration/
-  ├── Postman_collection.json
+  ├── resources
+  │   └── Postman_collection.json
+  │   └── Mockoon_Mock_APIs_collection.json
   └── README.md
 ```
-
-![image](https://github.com/braja555/api-testing-project/assets/20472118/6b879a83-7bbf-440c-9a21-48ec40a55ef8)
-
 
 ## API Specifications
 
 ### 1. User Registration
-### 2. User Login
-### 3. Search Books
-### 4. Add to Cart
-### 5. Checkout
+- **Endpoint**: `POST /users/register`
 
-##Mock API Implementation
+### 2. User Login
+- Endpoint: `POST /users/login`
+
+### 3. Search Books
+- Endpoint: `GET /book/search`
+  
+### 4. Add to Cart
+- Endpoint: `POST /users/{userId}/cart`
+  
+### 5. Checkout
+- Endpoint: `POST /users/{userId}/checkout`
+
+  
+## Mock API Implementation
 
 The mock APIs for User Registration and User Login are implemented using the Mockoon tool. However, due to limitations of Mockoon, the remaining APIs (Search Books, Add to Cart, and Checkout) are implemented using Flask for Python. The source code for these mock services can be found in the mock-apis directory.
 
 
 ## Automated Testing
 
-Automated tests are created using pytest and requests. Test scripts are located in the tests/integration directory.
+Automated tests are created using pytest and requests. Test scripts are located in the `tests/integration` directory.
 
 
 ## Postman Collection
-A Postman collection is provided for manual testing. The collection is located at `Postman_collection.json`.
+
+A Postman collection is provided for manual testing. The collection is located at `resources/BookStoreAPIs.postman_collection.json`.
 
 ## Setup and Running
+
 ### Prerequisites
 - Python 3.8+
 - `pip` (Python package installer)
 
-Setup Mock APIs with Mockoon (To Execute User Registration and User Login APIs)
-Install Mockoon:
+### Setup Mock APIs with Mockoon (To Execute User Registration and User Login APIs)
+1. Install Mockoon:
+   Download and install Mockoon from the official website.
 
-Download and install Mockoon from the official website.
-Start Mockoon:
+2. Start Mockoon:
+   Launch Mockoon from your applications folder.
 
-Launch Mockoon from your applications folder.
-Import Mock APIs Configuration: Shared in email and google drive.
+3. Import Mock APIs Configuration: 
+   Import the provided Mockoon configuration file `resources/BookStoreAPIs_Mockoon.json` into Mockoon.
 
-Import the provided Mockoon configuration file (mock-apis/mockoon_config.json) into Mockoon.
-Start Mockoon Server:
+6. Start the Mockoon server:
+   Start the Mockoon server by clicking the "Play" button next to the imported environment.
 
-Start the Mockoon server by clicking the "Play" button next to the imported environment.
 
 ### Setup Mock APIs for pytest (To Execute Search Books, Add to Cart and Checkout APIs)
 1. Navigate to the `mock-apis/source` directory:
@@ -97,7 +105,6 @@ Start the Mockoon server by clicking the "Play" button next to the imported envi
    pytest
    ```
 
-## Documentation
-Detailed documentation is provided within each script and the API specification section above. For further information, refer to the comments and docstrings within the source code.
+
 
 
