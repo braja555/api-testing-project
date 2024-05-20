@@ -110,6 +110,15 @@ A Postman collection is provided for manual testing. The collection is located a
 ### Documentation
 1. API Design Documentation: API specifications document detailing the endpoints and including request/response formats are located in 'resources/API_Design_Documentation'.
 2. Manual postman endpoint executed test result screenshots are available here in google docs 'https://docs.google.com/document/d/1GQBbajhVY0w04b5WWeJ42CX4bKVzjCerew_NiB3A5ew/edit?usp=sharing'.
-
+3. Steps to Configure CI pipeline:
+```
+   - Created the new workflow for CI in github (CI Pipeline).
+   - Mention the events that trigger the work flow when 'push' to the 'main' branch.
+   - Specifies type of runner to use.
+   - Install dependencies.
+   - Run Flask and Mokcoon mock API server
+   - Executes the tests using pytest.
+   - Share the test result to Stakeholders via email or slack group
+```
 
 
