@@ -20,8 +20,8 @@ api-testing-project/
   ├── tests/
   │   └── integration/
   ├── resources
-  │   └── Postman_collection.json
-  │   └── Mockoon_Mock_APIs_collection.json
+  │   └── BookStoreAPIs.postman_collection.json
+  │   └── BookStoreAPIs_Mockoon.json
   └── README.md
 ```
 
@@ -29,6 +29,8 @@ api-testing-project/
 
 ### 1. User Registration
 - **Endpoint**: `POST /users/register`
+- **Endpoint**: `PUT /users/register`
+- **Endpoint**: `DELETE /users/register`
 
 ### 2. User Login
 - Endpoint: `POST /users/login`
@@ -79,29 +81,29 @@ A Postman collection is provided for manual testing. The collection is located a
 
 ### Setup Mock APIs for pytest (To Execute Search Books, Add to Cart and Checkout APIs)
 1. Navigate to the `mock-apis/source` directory:
-   ```bash
+   ```terminal
    cd api-testing-project/mock-apis
    ```
 2. Install dependencies:
-   ```bash
+   ```terminal
    pip install -r requirements.txt
    ```
 3. Run the mock server:
-   ```bash
-   python app.py
+   ```terminal
+   python book_api.py
    ```
 
 ### Run Automated Tests
 1. Navigate to the project root directory:
-   ```bash
+   ```terminal
    cd api-testing-project
    ```
 2. Install test dependencies:
-   ```bash
+   ```terminal
    pip install pytest requests
    ```
 3. Execute the tests:
-   ```bash
+   ```terminal
    pytest
    ```
 
