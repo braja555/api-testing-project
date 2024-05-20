@@ -10,6 +10,7 @@ This project involves designing and implementing mock APIs for a hypothetical on
 - [Automated Testing](#automated-testing)
 - [Postman Collection](#postman-collection)
 - [Setup and Running](#setup-and-running)
+- [Documentation](#setup-and-running)
 
 ## Project Structure
 ```
@@ -106,7 +107,9 @@ A Postman collection is provided for manual testing. The collection is located a
    ```terminal
    pytest
    ```
-
+### Documentation
+1. API Design Documentation: API specifications document detailing the endpoints and including request/response formats are located in 'resources/API_Design_Documentation'.
+2. Manual postman endpoint executed test result screenshots are available here in google docs 'https://docs.google.com/document/d/1GQBbajhVY0w04b5WWeJ42CX4bKVzjCerew_NiB3A5ew/edit?usp=sharing'.
 
 
 
