@@ -186,7 +186,7 @@
         },
         {
           "uuid": "02095785-adda-4564-9480-106b2542e30f",
-          "body": "{\n  \"error\": \"Password is week.\"\n}\n",
+          "body": "{\n  \"error\": \"Password is weak.\"\n}\n",
           "latency": 0,
           "statusCode": 422,
           "label": "Password complexity requirments not met",
@@ -414,7 +414,7 @@
           "uuid": "32cc1c70-b5e7-4ad7-90ff-2c6391323e33",
           "body": "{\n  \"message\": \"User deleted successfully.\"\n}",
           "latency": 0,
-          "statusCode": 200,
+          "statusCode": 204,
           "label": "Delete registered user",
           "headers": [],
           "bodyType": "INLINE",

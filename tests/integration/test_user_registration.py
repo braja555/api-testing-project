@@ -171,7 +171,7 @@ def test_user_registration_password_complexity():
     }
     response = make_post_request("/users/register", payload)
     assert response.status_code == 422
-    assert response.json().get('error') == "Password is week."
+    assert response.json().get('error') == "Password is weak."
 
 
 def test_user_update():
@@ -186,8 +186,7 @@ def test_user_update():
 def test_user_delete():
     """Test registration to delete the user"""
     response = make_del_request("/users/register", params={"id": "748efe2f-1087-4ec1-95c1-5a573dae041d"})
-    assert response.status_code == 200
-    assert response.json().get('message') == "User deleted successfully."
+    assert response.status_code == 204
 
 
 if __name__ == "__main__":

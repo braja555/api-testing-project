@@ -1,0 +1,352 @@
+info:
+  title: User Registration API
+  description: API for user registration, updating user information, and deleting users.
+  version: 1.0.0
+paths:
+  /users/register:
+    post:
+      summary: Create a new user
+      description: Register a new user with the provided information.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Missing required fields
+        '409':
+          description: User already exists
+        '422':
+          description: Password is weak.
+
+    put:
+      summary: Update an existing user
+      description: Update user information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '202':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+    delete:
+      summary: Delete a user
+      description: Delete a user by their username.
+      operationId: deleteUser
+      tags:
+        - Users
+      parameters:
+        - name: username
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: User deleted successfully
+        '404':
+          description: User not found
+components:
+  schemas:
+    UserCreate:
+      type: object
+      required:
+        - firstname
+        - lastname
+        - username
+        - password
+        - email
+      properties:
+        firstname:
+          type: string
+          example: Raja
+        lastname:
+          type: string
+          example: Babu
+        username:
+          type: string
+          example: raja_babu
+        password:
+          type: string
+          format: password
+          example: Password123%
+        email:
+          type: string
+          format: email
+          example: raja_babu@api.com
+    UserUpdate:
+      type: object
+      properties:
+        firstname:
+          type: string
+          example: Raja
+        lastname:
+          type: string
+          example: Babu
+        username:
+          type: string
+          example: raja_babu_new
+        password:
+          type: string
+          format: password
+          example: NewPassword123%
+        email:
+          type: string
+          format: email
+          example: raja_babu_new@api.com
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 12345
+        firstname:
+          type: string
+          example: Raja
+        lastname:
+          type: string
+          example: Babu
+        username:
+          type: string
+          example: raja_babu_new
+        email:
+          type: string
+          format: email
+          example: raja_babu_new@api.com
+        createdAt:
+          type: string
+          format: date-time
+          example: '2024-05-20T15:15:30Z'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2024-05-20T15:15:30Z'
+
+
+info:
+  title: User Login API
+  description: API for user login.
+  version: 1.0.0
+paths:
+  /users/login:
+    post:
+      summary: User login
+      description: Authenticate a user with the provided username and password.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginSuccess'
+        '400':
+          description: Missing username or password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginError'
+        '403':
+          description: Permission not granted for the entered user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginError'
+components:
+  schemas:
+    UserLogin:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          example: raja_babu
+        password:
+          type: string
+          format: password
+          example: Password123%
+
+info:
+  title: Book Search API
+  description: API for searching books by title.
+  version: 1.0.0
+paths:
+  /book/search:
+    get:
+      summary: Search for books
+      description: Search for books by title.
+      parameters:
+        - name: title
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Title of the book to search for
+      responses:
+        '200':
+          description: Books retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '400':
+          description: Invalid query parameter
+        '404':
+          description: No books found
+
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        bookId:
+          type: string
+          example: 12345
+        title:
+          type: string
+          example: The Great Gatsby
+        author:
+          type: string
+          example: F. Scott Fitzgerald
+        availability:
+          type: boolean
+          example: true
+        price:
+          type: float
+          example: 525.00
+        quantity:
+          type: integer
+          example: 5
+
+info:
+  title: Book Cart API
+  description: API for adding books to a user's cart.
+  version: 1.0.0
+paths:
+  /users/{username}/cart:
+    post:
+      summary: Add a book to cart
+      description: Add a specified quantity of a book to the user's cart.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username of the user adding the book to the cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+      responses:
+        '200':
+          description: Book added to cart successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResponse'
+        '400':
+          description: Invalid input
+        '404':
+          description: Book not found
+components:
+  schemas:
+    CartItem:
+      type: object
+      required:
+        - bookId
+        - quantity
+      properties:
+        bookId:
+          type: string
+          example: 1-e51969c6-df00-4829-afa9-1104749015b
+        quantity:
+          type: integer
+          example: 1
+    CartResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Item added to cart successfully.
+        cartItem:
+          $ref: '#/components/schemas/CartItem'
+
+info:
+  title: Checkout API
+  description: API for processing checkout for a user's cart.
+  version: 1.0.0
+paths:
+  /users/{username}/checkout:
+    post:
+      summary: Process checkout
+      description: Process checkout for the user's cart.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username of the user processing checkout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutRequest'
+      responses:
+        '200':
+          description: Checkout successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutResponse'
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+components:
+  schemas:
+    CheckoutRequest:
+      type: object
+      required:
+        - userId
+      properties:
+        userId:
+          type: string
+          example: user1
+    CheckoutResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Your order is successful.
