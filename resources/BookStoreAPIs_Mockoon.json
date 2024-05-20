@@ -402,6 +402,87 @@
         }
       ],
       "responseMode": null
+    },
+    {
+      "uuid": "0706658d-34ba-4842-9142-6d8e919e999c",
+      "type": "http",
+      "documentation": "User Delete",
+      "method": "delete",
+      "endpoint": "users/register",
+      "responses": [
+        {
+          "uuid": "32cc1c70-b5e7-4ad7-90ff-2c6391323e33",
+          "body": "{\n  \"message\": \"User deleted successfully.\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Delete registered user",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "748efe2f-1087-4ec1-95c1-5a573dae041d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "a3c39dce-5efe-4b0f-9844-5b772ec50656",
+      "type": "http",
+      "documentation": "User Update",
+      "method": "put",
+      "endpoint": "users/register",
+      "responses": [
+        {
+          "uuid": "9adcda32-c1f5-4bf6-82ed-ddb31561a7f6",
+          "body": "{\n  \"message\": \"User updated successfully.\"\n}",
+          "latency": 0,
+          "statusCode": 202,
+          "label": "Update registered user",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "748efe2f-1087-4ec1-95c1-5a573dae041d",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "{\"firstname\": \"Raja\",     \"lastname\": \"Babu\",     \"username\": \"raja_babu_new\",     \"password\": \"Password123%\",     \"email\": \"raja_babu_new@api.com\" }",
+              "value": "{\"firstname\": \"Raja name updated\",     \"lastname\": \"Babu\",     \"username\": \"raja_babu_new\",     \"password\": \"Password123%\",     \"email\": \"raja_babu_new@api.com\" }",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
     }
   ],
   "rootChildren": [
@@ -412,6 +493,14 @@
     {
       "type": "route",
       "uuid": "d6247c49-7877-429a-9893-60908aa4a83c"
+    },
+    {
+      "type": "route",
+      "uuid": "0706658d-34ba-4842-9142-6d8e919e999c"
+    },
+    {
+      "type": "route",
+      "uuid": "a3c39dce-5efe-4b0f-9844-5b772ec50656"
     }
   ],
   "proxyMode": false,

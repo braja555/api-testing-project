@@ -348,6 +348,96 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "test_user_delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "id",
+								"value": "748efe2f-1087-4ec1-95c1-5a573dae041d",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/users/register?id=748efe2f-1087-4ec1-95c1-5a573dae041d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"users",
+								"register"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "748efe2f-1087-4ec1-95c1-5a573dae041d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test_user_update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "id",
+								"value": "748efe2f-1087-4ec1-95c1-5a573dae041d",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Raja name updated\",\n    \"lastname\": \"Babu\",\n    \"username\": \"raja_babu_new\",\n    \"password\": \"Password123%\",\n    \"email\": \"raja_babu_new@api.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/users/register?id=748efe2f-1087-4ec1-95c1-5a573dae041d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"users",
+								"register"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "748efe2f-1087-4ec1-95c1-5a573dae041d"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
